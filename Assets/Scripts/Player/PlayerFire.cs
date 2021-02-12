@@ -38,7 +38,7 @@ public class PlayerFire : MonoBehaviour
         {
             Debug.Log("Fire Left Side");
             Projectile projectileInstance = Instantiate(projectilePrefab, spawnPointLeft.position, spawnPointLeft.rotation);
-            projectileInstance.speed = projectileSpeed;
+            projectileInstance.speed = -projectileSpeed;
         }
         else
         {
