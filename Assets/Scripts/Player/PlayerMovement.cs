@@ -4,15 +4,17 @@ using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(Animator))]
+[RequireComponent(typeof(SpriteRenderer))]
 public class PlayerMovement : MonoBehaviour
 {
     Rigidbody2D rb;
     Animator anim;
+    SpriteRenderer marioSprite;
 
-    public bool isFiring;
     public float speed;
     public int jumpForce;
     public bool isGrounded;
+    public bool isFiring;
     public LayerMask isGroundLayer;
     public Transform groundCheck;
     public float groundCheckRadius;
@@ -20,8 +22,10 @@ public class PlayerMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+        marioSprite = GetComponent<SpriteRenderer>();
 
         if (speed <= 0)
         {
@@ -43,7 +47,6 @@ public class PlayerMovement : MonoBehaviour
             Debug.Log("Groundcheck does not exist, please set a transform value for groundcheck");
         }
 
-
     }
 
     // Update is called once per frame
@@ -58,6 +61,7 @@ public class PlayerMovement : MonoBehaviour
             rb.AddForce(Vector2.up * jumpForce);
         }
 
+
         if (Input.GetButtonDown("Fire1"))
         {
             isFiring = true;
@@ -71,5 +75,8 @@ public class PlayerMovement : MonoBehaviour
         anim.SetFloat("speed", Mathf.Abs(horizontalInput));
         anim.SetBool("isGrounded", isGrounded);
         anim.SetBool("isFiring", isFiring);
+
+        if (marioSprite.flipX && horizontalInput > 0 || !marioSprite.flipX && horizontalInput < 0)
+            marioSprite.flipX = !marioSprite.flipX;
     }
 }

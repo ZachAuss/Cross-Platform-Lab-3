@@ -3,7 +3,8 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Projectile
   layers:
   - Default
   - TransparentFX
@@ -43,4 +44,7 @@ TagManager:
     locked: 0
   - name: PlayArea
     uniqueID: 943541077
+    locked: 0
+  - name: Projectile
+    uniqueID: 622104733
     locked: 0
